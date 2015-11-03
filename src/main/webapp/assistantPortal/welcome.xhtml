@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/WEB-INF/portalTemplate.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ezcomp="http://xmlns.jcp.org/jsf/composite/ezcomp">
+
+    <ui:define name="title">
+        Vet Assistant Portal Welcome Page
+    </ui:define>
+
+    <ui:define name="body">
+        <div class="large-6 columns">
+            <ezcomp:petowners petowners="#{petOwnerService.findAll()}"/>
+        </div>
+        
+        <div class="large-6 columns">
+            <h:form><h:commandLink action="#{reservationBean.doCreate()}" value="Create"/></h:form>
+            <ezcomp:reservations reservations="#{reservationService.findAll()}" readonly="false"/>
+        </div>
+        <h2>Your information</h2>
+        <ezcomp:vetassistant vetAssistant="#{vetAssistantBean.vetAssistant}" readonly="false" action="#{vetAssistantBean.executeUpdate()}"/>
+    </ui:define>
+    
+    
+
+</ui:composition>
